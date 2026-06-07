@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tlk-parser"
-version = "0.1.0"
+version = "1.0.0"
 description = "Read, transform, and write BioWare TLK V1 dialogue files"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,7 +12,7 @@ license = "MIT"
 authors = [{ name = "mldelaney94" }]
 keywords = ["tlk", "bioware", "kotor", "dialogue", "parser"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
