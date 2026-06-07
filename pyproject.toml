@@ -32,9 +32,8 @@ Homepage = "https://github.com/mldelaney94/tlk_v1_parser"
 Repository = "https://github.com/mldelaney94/tlk_v1_parser"
 Issues = "https://github.com/mldelaney94/tlk_v1_parser/issues"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["tlk_parser*"]
+[tool.setuptools]
+packages = ["tlk_parser"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
