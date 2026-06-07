@@ -1,0 +1,3 @@
+pinyiniser==2.0.3
+pytest>=8.0
+mypy>=1.0
