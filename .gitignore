@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+tlk_parser.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+.pytest_cache/
+.mypy_cache/
+*.tlk
+publish-pypi.sh

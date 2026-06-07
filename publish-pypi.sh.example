@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Copy to publish-pypi.sh (gitignored) and paste your PyPI token:
+#   cp publish-pypi.sh.example publish-pypi.sh
+#   chmod +x publish-pypi.sh
+
+export TWINE_USERNAME=__token__
+export TWINE_PASSWORD='pypi-REPLACE_WITH_YOUR_TOKEN'
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+
+if [[ "${TWINE_PASSWORD}" == 'pypi-REPLACE_WITH_YOUR_TOKEN' ]]; then
+  echo "Replace TWINE_PASSWORD in publish-pypi.sh with your PyPI API token." >&2
+  exit 1
+fi
+
+VERSION="$(grep '^version = ' pyproject.toml | head -1 | cut -d'"' -f2)"
+echo "Building tlk-parser ${VERSION}..."
+
+if [[ ! -d .venv ]]; then
+  python3 -m venv .venv
+fi
+
+.venv/bin/pip install -q --upgrade pip build twine
+rm -rf dist build
+.venv/bin/python -m build
+.venv/bin/twine check dist/*
+
+if [[ "${1:-}" == "--check" ]]; then
+  echo "Check passed. dist/ is ready; run without --check to upload."
+  exit 0
+fi
+
+echo "Uploading tlk-parser ${VERSION} to PyPI..."
+.venv/bin/twine upload dist/*
+
+echo "Published tlk-parser ${VERSION} to https://pypi.org/project/tlk-parser/"

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from pathlib import Path
-from typing import BinaryIO, Self
+from typing import BinaryIO, Self, cast
 
 from tlk_parser.data_classes import Header, StringRef, StringRep
 
@@ -53,8 +53,8 @@ class Tlk:
 
     return output_path
 
-  def _deep_copy(self) -> Tlk:
-    tlk = Tlk.__new__(Tlk)
+  def _deep_copy(self) -> Self:
+    tlk = cast(Self, Tlk.__new__(Tlk))
     tlk.encoding = self.encoding
     tlk.source_path = self.source_path
     tlk.header = self.header
